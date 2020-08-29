@@ -18,6 +18,10 @@ def main():
 def hello():
     return 'I am good, thanks for asking'
 
+@app.route('/kill')
+def kill():
+    raise Exception('shutdown')    
+
 if __name__ == "__main__":
     app.run()
 ```
