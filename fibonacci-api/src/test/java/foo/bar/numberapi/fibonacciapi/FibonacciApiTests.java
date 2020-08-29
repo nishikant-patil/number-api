@@ -3,6 +3,7 @@ package foo.bar.numberapi.fibonacciapi;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import org.junit.jupiter.api.Assertions;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,6 @@ public final class FibonacciApiTests {
 
     @Test
     public void testFirstNFibonacciNumbers() {                
-        Assertions.assertEquals(Arrays.asList(0, 1, 1, 2, 3, 5, 8, 13, 21, 34), fibonacciApi.getFirstNFibonacciNumbers(10));
-                
+        Assertions.assertIterableEquals(Arrays.asList(0L, 1L, 1L, 2L, 3L, 5L, 8L, 13L, 21L, 34L), fibonacciApi.getFirstNFibonacciNumbers((byte) 10));                
     }
 }
