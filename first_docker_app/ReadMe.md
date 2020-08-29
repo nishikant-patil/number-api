@@ -1,10 +1,10 @@
-### Create account on Docker Hub
+### Step 1: Create account on Docker Hub
 Click [here](https://hub.docker.com/) to login
 
-### Docker Labs (Super Lazy Developers)
+### Step 2: Docker Labs (Super Lazy Developers)
 Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
-### Create sample app file (app.py)
+### Step 3: Create sample app file (app.py)
 ``` python
 import os
 from flask import Flask
@@ -20,13 +20,13 @@ def hello():
 
 @app.route('/kill')
 def kill():
-    raise Exception('shutdown')    
+    raise Exception('killing')    
 
 if __name__ == "__main__":
     app.run()
 ```
 
-### Create sample docker file i.e. Dockerfile
+### Step 4: Create sample docker file i.e. Dockerfile
 ``` unix
 FROM ubuntu
 
@@ -42,26 +42,25 @@ COPY app.py /opt/app.py
 ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
 ```
 
-### Build Image on Docker
+### Step 5: Build Image on Docker
 ``` unix
 cd first_docker_app
 docker build .
 ```
 
-### Name Image 
+### Step 6: Name Image 
 ``` unix
-docker build . -t {login_id}/first_docker_app
+docker build . -t first_docker_app
 ```
 
-### Test Image 
+### Step 7: Test Image on Lab
 ``` python
-docker run -p 9091:5000 {login_id}/first_docker_app
-
-http://localhost:9091/
-http://localhost:9091/how%20are%20you
+docker run -p 8080:5000 first_docker_app
 ```
 
-### Push Image to Docker account
+### Step 8: Push Image to Docker account
 ``` unix
-docker push {login_id}/first_docker_app
+docker login
+docker build . -t {docker_login_id}/first_docker_app
+docker push {docker_login_id}/first_docker_app
 ```
