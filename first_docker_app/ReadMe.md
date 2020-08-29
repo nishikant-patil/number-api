@@ -1,6 +1,8 @@
 ### Create account on Docker Hub
 [Login Link](https://hub.docker.com/)
 
+### Docker Labs (Super Lazy Developers)
+Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
 ### Create sample app file (app.py)
 ``` python
