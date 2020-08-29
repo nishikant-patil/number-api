@@ -11,8 +11,7 @@ APIs available -
 ## Docker Installation
 
 ### Windows
-
-Follow step from [here](https://docs.docker.com/docker-for-windows/wsl/).
+- Follow step from [here](https://docs.docker.com/docker-for-windows/wsl/).
 
 ### Linux
 
@@ -22,11 +21,10 @@ Follow step from [here](https://docs.docker.com/docker-for-windows/wsl/).
 - Follow steps from [here](https://docs.docker.com/engine/install/centos/) for CentOS.
 
 ### Docker Desktop
-
-Follow steps from [here](https://www.docker.com/products/docker-desktop)
+- Follow steps from [here](https://www.docker.com/products/docker-desktop)
 
 ### Docker Labs (Super Lazy Developers)
-Click [Lab](https://labs.play-with-docker.com/#) to initialize
+- Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
 ## Usage
 ### Fibonacci API
