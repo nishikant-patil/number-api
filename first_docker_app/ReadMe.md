@@ -1,4 +1,4 @@
-### Create sample app file
+### Create sample app file (app.py)
 ``` python
 import os
 from flask import Flask
