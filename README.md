@@ -25,7 +25,7 @@ Follow steps from [here](https://docs.docker.com/engine/install/ubuntu/) for Ubu
 Follow steps from [here](https://docs.docker.com/engine/install/centos/) for CentOS.
 
 ### Docker Labs (Super Lazy Developers)
-https://labs.play-with-docker.com/#
+Docker Playground (https://labs.play-with-docker.com/#)
 
 ## Usage
 ### Fibonacci API
