@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return "Welcome!"
+    return "Welcome to your first docker app!"
 
 @app.route('/how are you')
 def hello():
