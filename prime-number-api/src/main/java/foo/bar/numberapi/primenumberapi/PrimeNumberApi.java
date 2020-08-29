@@ -1,4 +1,4 @@
-package foo.bar.numberapi;
+package foo.bar.numberapi.primenumberapi;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrimeNumberApi {
     @GetMapping(path = "/is-prime/{n}")
     public boolean isPrime(@PathVariable(name = "n") int n) {
-        if (n < 1 || (n & 1) == 0) {
+        if (n < 1 || (n != 2 && (n & 1) == 0)) {
             return false;
         }
         Boolean result = switch (n) {

@@ -1,4 +1,4 @@
-package foo.bar.numberapi;
+package foo.bar.numberapi.primenumberapi ;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

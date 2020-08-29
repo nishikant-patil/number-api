@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-LABEL description="Demo API for Docker session"
+LABEL description="Demo Prime Number API for Docker session"
 LABEL maintainer="nishikant.ajay.patil@gmail.com"
 LABEL version = "0.1"
 
@@ -17,8 +17,8 @@ RUN apt-get update && \
     apt-get purge && \
     apt-get autoclean
 
-COPY ./build/libs/number-api-0.1.jar /apps/
+COPY ./build/libs/prime-number-api-0.1.jar /apps/
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/apps/jdk-14.0.2/bin/java", "-jar", "/apps/number-api-0.1.jar" ]
+ENTRYPOINT [ "/apps/jdk-14.0.2/bin/java", "-jar", "/apps/prime-number-api-0.1.jar" ]

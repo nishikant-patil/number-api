@@ -1,4 +1,4 @@
-package foo.bar.numberapi;
+package foo.bar.numberapi.primenumberapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 
 @SpringBootApplication
-public class NumberApiApplication {
+public class PrimeNumberApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NumberApiApplication.class, args);
+		SpringApplication.run(PrimeNumberApiApplication.class, args);
 	}
 
 	@Bean
@@ -20,9 +20,9 @@ public class NumberApiApplication {
 		return new OpenAPI()
 					.info(
 						new Info()
-						.title("Number API")
+						.title("Prime Number API")
 						.version("0.1")
-						.description("Demo API for Docker session")
+						.description("Demo Prime Number API for Docker session")
 					);
 	}
 

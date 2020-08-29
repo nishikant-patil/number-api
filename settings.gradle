@@ -1,1 +1,3 @@
 rootProject.name = 'number-api'
+include 'prime-number-api'
+include 'fibonacci-api'
