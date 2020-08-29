@@ -46,12 +46,12 @@ docker build .
 
 ### Name Image 
 ``` unix
-docker build . -t bhargrah/first_docker_app
+docker build . -t {login_id}/first_docker_app
 ```
 
 ### Test Image 
 ``` python
-docker run -p 9091:5000 bhargrah/first_docker_app
+docker run -p 9091:5000 {login_id}/first_docker_app
 
 http://localhost:9091/
 http://localhost:9091/how%20are%20you
@@ -59,5 +59,5 @@ http://localhost:9091/how%20are%20you
 
 ### Push Image to Docker account
 ``` unix
-docker push bhargrah/first_docker_app
+docker push {login_id}/first_docker_app
 ```
