@@ -40,7 +40,8 @@ docker images
 ```
 Spin up a container using the following command 
 ``` bash
-docker run -dp host-port:8080 nishikantpatil/fibonacci-api:0.1 # replace 'host-port' with any unused port on the host machine
+docker run -dp host-port:8080 nishikantpatil/fibonacci-api:0.1 
+# replace 'host-port' with any unused port on the host machine
 ```
 
 Verify the container state using the following command
@@ -74,7 +75,8 @@ docker images
 ```
 Spin up a container using the following command 
 ``` bash
-docker run -dp host-port:8080 nishikantpatil/prime-number-api:0.1 # replace 'host-port' with any unused port on the host machine
+docker run -dp host-port:8080 nishikantpatil/prime-number-api:0.1 
+# replace 'host-port' with any unused port on the host machine
 ```
 
 Verify the container state using the following command
