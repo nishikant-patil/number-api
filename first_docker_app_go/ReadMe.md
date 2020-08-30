@@ -1,57 +1,66 @@
-### Create sample app file
-``` go
-package main
+### Step 1: Create account on Docker Hub
+Click [here](https://hub.docker.com/) to login
 
-import (
-  "fmt"
-  "net/http"
-  "os"
-)
+### Step 2: Docker Labs (Super Lazy Developers)
+Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
-func handler(w http.ResponseWriter, r *http.Request) {
-  var name, _ = os.Hostname()
-  fmt.Fprintf(w, "<h1>Hello Docker , this request is served by GO server , processed by host: %s</h1>\n", name)
-}
+### Step 3: Create sample app file (app.py)
+``` python
+import os
+from flask import Flask
+app = Flask(__name__)
 
-func main() {
-  fmt.Fprintf(os.Stdout, "Web Server started. Listening on 0.0.0.0:80\n")
-  http.HandleFunc("/", handler)
-  http.ListenAndServe(":80", nil)
-}
+@app.route("/")
+def main():
+    return "Welcome to your first docker app!"
+
+@app.route('/how are you')
+def hello():
+    return 'I am good, thanks for asking'
+
+@app.route('/kill')
+def kill():
+    raise Exception('killing')    
+
+if __name__ == "__main__":
+    app.run()
 ```
 
-### Create sample docker file i.e. Dockerfile
-``` docker
-FROM golang:1.6-alpine
-RUN mkdir /app
-ADD . /app/
-WORKDIR /app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
-CMD ["/app/main"]
+### Step 4: Create sample docker file i.e. Dockerfile
+``` unix
+FROM ubuntu
 
-EXPOSE 80
+RUN apt-get update
+RUN apt-get install -y python
+RUN apt-get update
+RUN apt-get install -y python3-pip
+
+RUN pip3 install flask
+
+COPY app.py /opt/app.py
+
+ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
 ```
 
-### Build Image on Docker
+### Step 5: Build Image on Docker
 ``` unix
 cd first_docker_app
 docker build .
 ```
 
-### Name Image 
+### Step 6: Name Image 
 ``` unix
-docker build . -t bhargrah/first_docker_app
+docker build . -t first_docker_app
 ```
 
-### Test Image 
+### Step 7: Test Image on Lab
 ``` python
-docker run -p 9091:5000 bhargrah/first_docker_app
-
-http://localhost:9091/
-http://localhost:9091/how%20are%20you
+docker run -p 8080:5000 first_docker_app
 ```
 
-### Push Image to Docker account
+### Step 8: Push Image to Docker account
 ``` unix
-docker push bhargrah/first_docker_app
+docker login
+docker build . -t {docker_login_id}/first_docker_app
+docker push {docker_login_id}/first_docker_app
 ```
