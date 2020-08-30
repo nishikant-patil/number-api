@@ -5,62 +5,58 @@ Click [here](https://hub.docker.com/) to login
 Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
 ### Step 3: Create sample app file (app.py)
-``` python
-import os
-from flask import Flask
-app = Flask(__name__)
+``` go
+package main
 
-@app.route("/")
-def main():
-    return "Welcome to your first docker app!"
+import (
+  "fmt"
+  "net/http"
+  "os"
+)
 
-@app.route('/how are you')
-def hello():
-    return 'I am good, thanks for asking'
+func handler(w http.ResponseWriter, r *http.Request) {
+  var name, _ = os.Hostname()
+  fmt.Fprintf(w, "<h1>Hello Docker , this request is served by GO server , processed by host: %s</h1>\n", name)
+}
 
-@app.route('/kill')
-def kill():
-    raise Exception('killing')    
-
-if __name__ == "__main__":
-    app.run()
+func main() {
+  fmt.Fprintf(os.Stdout, "Web Server started. Listening on 0.0.0.0:80\n")
+  http.HandleFunc("/", handler)
+  http.ListenAndServe(":80", nil)
+}
 ```
 
 ### Step 4: Create sample docker file i.e. Dockerfile
 ``` unix
-FROM ubuntu
+FROM golang:1.6-alpine
+RUN mkdir /app
+ADD . /app/
+WORKDIR /app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+CMD ["/app/main"]
 
-RUN apt-get update
-RUN apt-get install -y python
-RUN apt-get update
-RUN apt-get install -y python3-pip
-
-RUN pip3 install flask
-
-COPY app.py /opt/app.py
-
-ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
+EXPOSE 80
 ```
 
 ### Step 5: Build Image on Docker
 ``` unix
-cd first_docker_app
+cd first_docker_app_go
 docker build .
 ```
 
 ### Step 6: Name Image 
 ``` unix
-docker build . -t first_docker_app
+docker build . -t first_docker_app_go
 ```
 
 ### Step 7: Test Image on Lab
-``` python
-docker run -p 8080:5000 first_docker_app
+``` unix
+docker run -p 8080:80 first_docker_app
 ```
 
 ### Step 8: Push Image to Docker account
 ``` unix
 docker login
-docker build . -t {docker_login_id}/first_docker_app
-docker push {docker_login_id}/first_docker_app
+docker build . -t {docker_login_id}/first_docker_app_go
+docker push {docker_login_id}/first_docker_app_go
 ```
