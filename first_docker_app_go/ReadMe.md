@@ -51,7 +51,7 @@ docker build . -t first_docker_app_go
 
 ### Step 7: Test Image on Lab
 ``` unix
-docker run -p 8080:80 first_docker_app
+docker run -p 8080:80 first_docker_app_go
 ```
 
 ### Step 8: Push Image to Docker account
