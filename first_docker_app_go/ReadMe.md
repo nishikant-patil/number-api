@@ -21,19 +21,15 @@ func main() {
 ```
 
 ### Create sample docker file i.e. Dockerfile
-``` unix
-FROM ubuntu
+``` docker
+FROM golang:1.6-alpine
+RUN mkdir /app
+ADD . /app/
+WORKDIR /app
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+CMD ["/app/main"]
 
-RUN apt-get update
-RUN apt-get install -y python
-RUN apt-get update
-RUN apt-get install -y python3-pip
-
-RUN pip3 install flask
-
-COPY app.py /opt/app.py
-
-ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0
+EXPOSE 80
 ```
 
 ### Build Image on Docker
