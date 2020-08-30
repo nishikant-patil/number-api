@@ -11,21 +11,20 @@ APIs available -
 ## Docker Installation
 
 ### Windows
-
-Follow step from [here](https://docs.docker.com/docker-for-windows/wsl/).
+- Follow step from [here](https://docs.docker.com/docker-for-windows/wsl/).
 
 ### Linux
 
-Follow steps from [here](https://docs.docker.com/engine/install/debian/) for Debian.
+- Follow steps from [here](https://docs.docker.com/engine/install/debian/) for Debian.
+- Follow steps from [here](https://docs.docker.com/engine/install/fedora/) for Fedora.
+- Follow steps from [here](https://docs.docker.com/engine/install/ubuntu/) for Ubuntu.
+- Follow steps from [here](https://docs.docker.com/engine/install/centos/) for CentOS.
 
-Follow steps from [here](https://docs.docker.com/engine/install/fedora/) for Fedora.
-
-Follow steps from [here](https://docs.docker.com/engine/install/ubuntu/) for Ubuntu.
-
-Follow steps from [here](https://docs.docker.com/engine/install/centos/) for CentOS.
+### Docker Desktop
+- Follow steps from [here](https://www.docker.com/products/docker-desktop)
 
 ### Docker Labs (Super Lazy Developers)
-Click [Lab](https://labs.play-with-docker.com/#) to initialize
+- Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
 ## Usage
 ### Fibonacci API
@@ -41,7 +40,8 @@ docker images
 ```
 Spin up a container using the following command 
 ``` bash
-docker run -dp host-port:8080 nishikantpatil/fibonacci-api:0.1 # replace 'host-port' with any unused port on the host machine
+docker run -dp host-port:8080 nishikantpatil/fibonacci-api:0.1 
+# replace 'host-port' with any unused port on the host machine
 ```
 
 Verify the container state using the following command
@@ -75,7 +75,8 @@ docker images
 ```
 Spin up a container using the following command 
 ``` bash
-docker run -dp host-port:8080 nishikantpatil/prime-number-api:0.1 # replace 'host-port' with any unused port on the host machine
+docker run -dp host-port:8080 nishikantpatil/prime-number-api:0.1 
+# replace 'host-port' with any unused port on the host machine
 ```
 
 Verify the container state using the following command
