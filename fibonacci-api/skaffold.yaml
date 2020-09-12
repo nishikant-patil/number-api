@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: number-api
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - image: nishikantpatil/fibonacci-api
+    context: .
+    jib:
+      project: fibonacci-api
+      type: 'gradle'
+deploy:
+  kubectl:
+    manifests:
+    - ./k8s.yaml

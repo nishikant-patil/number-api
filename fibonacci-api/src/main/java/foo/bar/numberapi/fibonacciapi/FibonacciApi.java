@@ -7,6 +7,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
 import java.util.LinkedList;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,5 +49,10 @@ public class FibonacciApi {
         }
 
         return firstNFibonacciNumbers;
+    }
+
+    @GetMapping("/ping")
+    public String ping() throws UnknownHostException {
+        return "pong from - " + InetAddress.getLocalHost().getHostName();
     }
 }
