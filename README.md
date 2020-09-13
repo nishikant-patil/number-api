@@ -98,7 +98,7 @@ Watching for changes...
 
 The application is deployed in Minikube as a [deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/p) and has one initial [replica](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)/instance of the service. A Horizontal Pod Autoscaler will scale upto 10 instances of the service based on cpu load. In order to access the application, a [service](https://kubernetes.io/docs/concepts/services-networking/service/) is required which redirects requests to [pods](https://kubernetes.io/docs/concepts/workloads/pods/). 'k8s-service.yaml' has the configuration for the service. Refer to [service types](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for more details.
 
-Execute the following command to access the service from your browser at [http://localhost:1337/fibonacci/ping](http:localhost:1337/fibonacci/ping)
+Execute the following command to access the service from your browser at [http://localhost:1337/fibonacci/ping](http://localhost:1337/fibonacci/ping)
 ```bash
 kubectl port-forward service/fibonacci-api-service 1337:1337
 ```
