@@ -29,7 +29,7 @@ APIs available -
 ## Usage
 ### Fibonacci API
 
-Fibonacci API supports [Skaffold](https://skaffold.dev/) builds with [JIB](https://github.com/GoogleContainerTools/jib) gradle plugin to build and deploy images either on local [Minikube](https://minikube.sigs.k8s.io/docs/) or [DockerHub](https://hub.docker.com/).
+Fibonacci API supports [Skaffold](https://skaffold.dev/) builds with [JIB](https://github.com/GoogleContainerTools/jib) gradle plugin to build and deploy images either on [Minikube](https://minikube.sigs.k8s.io/docs/) or [DockerHub](https://hub.docker.com/).
 
 #### Skaffold, Kubectl, and Minikube setup
 
