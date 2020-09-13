@@ -26,20 +26,39 @@ APIs available -
 ### Docker Labs (Super Lazy Developers)
 - Click [Lab](https://labs.play-with-docker.com/#) to initialize
 
-## Usage
-### Fibonacci API
-
-Fibonacci API supports [Skaffold](https://skaffold.dev/) builds with [JIB](https://github.com/GoogleContainerTools/jib) gradle plugin to build and deploy images either on [Minikube](https://minikube.sigs.k8s.io/docs/) or [DockerHub](https://hub.docker.com/).
-
-#### Skaffold, Kubectl, Kustomize, and Minikube setup
+### Skaffold, Kubectl, and Minikube setup
 
 Follow steps from [here](https://skaffold.dev/docs/quickstart/) for Skaffold, Kubectl, and Minikube
 
+#### Minikube dashboard
+
+Minikube dashboard provides a good UI to view and manage the kubernetes cluster. 
+
+Execute the following command to start Minikube dashboard
+```
+minikube dashboard
+```
+
+You should get an output similar to
+```
+🤔  Verifying dashboard health ...
+🚀  Launching proxy ...
+🤔  Verifying proxy health ...
+🎉  Opening http://127.0.0.1:42553/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+👉  http://127.0.0.1:42553/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+```
+
+### Kustomize setup
 Install Kustomize as per the instructions from [here](https://kubernetes-sigs.github.io/kustomize/installation/binaries/). This will install Kustomize into the current working directory. You can move it to bin path to make it available globally.
 
 ```
 sudo mv ./kustomize /usr/local/bin/
 ```
+
+## Usage
+### Fibonacci API
+
+Fibonacci API supports [Skaffold](https://skaffold.dev/) builds with [JIB](https://github.com/GoogleContainerTools/jib) gradle plugin to build and deploy images either on [Minikube](https://minikube.sigs.k8s.io/docs/) or [DockerHub](https://hub.docker.com/).
 
 #### Local build
 
@@ -77,26 +96,16 @@ Press Ctrl+C to exit
 Watching for changes...
 ```
 
-The application is deployed in Minikube as a [deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/p) and has two [replicas](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)/instances of the service. In order to access the application, we need to create a [service](https://kubernetes.io/docs/concepts/services-networking/service/) which will redirect requests to internal [pods](https://kubernetes.io/docs/concepts/workloads/pods/). 'k8s-service.yaml' has the configuration for the service. Execute the following command to create [ClusterIP](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) service for this application.
-```bash
-kubectl -n default apply -f k8s-service.yaml
-```
+The application is deployed in Minikube as a [deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/p) and has one initial [replica](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)/instance of the service. A Horizontal Pod Autoscaler will scale upto 10 instances of the service based on cpu load. In order to access the application, a [service](https://kubernetes.io/docs/concepts/services-networking/service/) is required which redirects requests to [pods](https://kubernetes.io/docs/concepts/workloads/pods/). 'k8s-service.yaml' has the configuration for the service. Refer to [service types](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for more details.
 
-Once the service is created, execute the following command to get an externally accessible url of the service.
+Execute the following command to access the service from your browser at [http:localhost:1337/fibonacci/ping](http:localhost:1337/fibonacci/ping)
 ```bash
-minikube service fibonacci-api-service --url
+kubectl port-forward service/fibonacci-api-service 1337:1337
 ```
 You should see an output similar to the following
 ```
-😿  service default/fibonacci-api-service has no node port
-🏃  Starting tunnel for service fibonacci-api-service.
-|-----------|-----------------------|-------------|------------------------|
-| NAMESPACE |         NAME          | TARGET PORT |          URL           |
-|-----------|-----------------------|-------------|------------------------|
-| default   | fibonacci-api-service |             | http://127.0.0.1:42555 |
-|-----------|-----------------------|-------------|------------------------|
-http://127.0.0.1:42555
-❗  Because you are using a Docker driver on linux, the terminal needs to be open to run it.
+Forwarding from 127.0.0.1:1337 -> 8080
+Forwarding from [::1]:1337 -> 8080
 ```
 
 Swagger UI will be available at 
