@@ -108,14 +108,9 @@ Forwarding from 127.0.0.1:1337 -> 8080
 Forwarding from [::1]:1337 -> 8080
 ```
 
-Swagger UI will be available at 
-```html
-http://${external-url-for-fibonaacci-api-service}:/v3/api-docs
-```
-Swagger Doc JSON will be available at 
-```html
-http://${external-url-for-fibonaacci-api-service}/swagger-ui.html
-```
+Swagger UI will be available at [http:localhost:1337/swagger-ui.html](http:localhost:1337/swagger-ui.html)
+
+Swagger Doc JSON will be available at [http:localhost:1337/v3/api-docs](http:localhost:1337/v3/api-docs)
 
 ### Prime Number API
 
@@ -143,14 +138,9 @@ Fibonacci API will be available at
 http://localhost:host-port:/primes/is-prime/5
 ```
 
-Swagger UI will be available at 
-```html
-http://localhost:host-port:/v3/api-docs
-```
-Swagger Doc JSON will be available at 
-```html
-http://localhost:host-port/swagger-ui.html
-```
+Swagger UI will be available at [http://localhost:host-port/swagger-ui.html](http://localhost:host-port/swagger-ui.html)
+
+Swagger Doc JSON will be available at [http://localhost:host-port/v3/api-docs](http://localhost:host-port/v3/api-docs)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
