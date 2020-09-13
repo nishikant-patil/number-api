@@ -11,7 +11,20 @@ build:
     jib:
       project: fibonacci-api
       type: 'gradle'
-deploy:
-  kubectl:
-    manifests:
-    - ./k8s.yaml
+profiles:
+  - name: prod
+    deploy:
+      kustomize:
+        paths: ["./overlay/prod/"]
+  - name: dev
+    deploy:
+      kustomize:
+        paths: ["./base/"]
+  - name: qa
+    deploy:
+      kustomize:
+        paths: ["./base/"]
+  - name: uat
+    deploy:
+      kustomize:
+        paths: ["./base/"]

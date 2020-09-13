@@ -31,9 +31,15 @@ APIs available -
 
 Fibonacci API supports [Skaffold](https://skaffold.dev/) builds with [JIB](https://github.com/GoogleContainerTools/jib) gradle plugin to build and deploy images either on [Minikube](https://minikube.sigs.k8s.io/docs/) or [DockerHub](https://hub.docker.com/).
 
-#### Skaffold, Kubectl, and Minikube setup
+#### Skaffold, Kubectl, Kustomize, and Minikube setup
 
-Follow steps from [here](https://skaffold.dev/docs/quickstart/)
+Follow steps from [here](https://skaffold.dev/docs/quickstart/) for Skaffold, Kubectl, and Minikube
+
+Install Kustomize as per the instructions from [here](https://kubernetes-sigs.github.io/kustomize/installation/binaries/). This will install Kustomize into the current working directory. You can move it to bin path to make it available globally.
+
+```
+sudo mv ./kustomize /usr/local/bin/
+```
 
 #### Local build
 
@@ -46,7 +52,7 @@ eval $(minikube -p minikube docker-env)
 
 Navigate to 'fibonacci-api' directory from terminal and run the following command to start Skaffold 'dev' mode.
 ```bash
-skaffold dev
+skaffold dev -p ${profile} # check list of available profiles from 'skaffold.yaml'
 ```
 
 If the setup is correct, you should see an output similar to the following
