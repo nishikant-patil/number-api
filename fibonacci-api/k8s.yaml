@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fibonacci-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: fibonacci-api
@@ -17,5 +17,61 @@ spec:
       containers:
       - name: fibonacci-api
         image: nishikantpatil/fibonacci-api:latest
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+          requests:
+            cpu: 100m
+            memory: "64Mi"
         ports:
         - containerPort: 8080
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fibonacci-api-deployment-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fibonacci-api-deployment
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleUp:
+      stabilizationWindowSeconds: 10
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+      - type: Pods
+        value: 4
+        periodSeconds: 15
+      selectPolicy: Max
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fibonacci-api-service
+spec:
+  type: NodePort
+  selector:
+    app: fibonacci-api
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: 8080
