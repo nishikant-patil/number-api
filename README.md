@@ -30,6 +30,19 @@ APIs available -
 
 Follow steps from [here](https://skaffold.dev/docs/quickstart/) for Skaffold, Kubectl, and Minikube
 
+#### Metric-server setup
+Metric server is required for obtaining cpu and memory usages for autoscaling up/down.
+
+Execute the following command to install metric-server
+```
+kubectl apply -f metric-server.yaml
+```
+
+Verify using command
+```
+kubectl -n kube-system top pods # wait for few minutes to allow metric-server to collect metrics
+```
+
 #### Minikube dashboard
 
 Minikube dashboard provides a good UI to view and manage the kubernetes cluster. 
